@@ -4,9 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Real estates company</title>
-	<link rel="stylesheet" type="text/css" href="./includes/design/maincss.css">
+	<link rel="stylesheet" type="text/css" href="../includes/design/maincss.css">
   <style >
-  body{background-image:url(images/logo.png);
+  body{
+    background-image:url('images/logo.png');
   background-size: 500px;
   background-repeat: no-repeat;
   background-position: center;
@@ -33,7 +34,7 @@
   <a href="#contact">Sale a Property</a>
   <a href="#contact">View sold Properties</a>
   <a href="#" class="delete">Delete a Property</a>
-  <a href="homepage.html">Back to Home</a>
+  <a href="./home.php">Back to Home</a>
 </div>
 <div class="content">
   <h1 class="header1" style="opacity: 0.5;">Property Management Page</h1>

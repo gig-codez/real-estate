@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Real estates company</title>
-	<link rel="stylesheet" type="text/css" href="./includes/design/maincss.css">
+	<link rel="stylesheet" type="text/css" href="../includes/design/maincss.css">
   <style >
   body{background-image:url(images/logo.png);
   background-size: 500px;

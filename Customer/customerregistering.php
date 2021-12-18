@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="./includes/design/maincss.css">
-  <link rel="stylesheet" type="text/css" href="./includes/design/mylogincss.css">
-	<title>login.html</title>
+	<link rel="stylesheet" type="text/css" href="../includes/design/maincss.css">
+  <link rel="stylesheet" type="text/css" href="../includes/design/mylogincss.css">
+	<title>Customer Login</title>
 </head>
 <body>
 <?php ?>

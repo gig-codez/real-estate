@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>welcomepage</title>
+	<title>Welcome</title>
 	<link rel="stylesheet" type="text/css" href="./includes/design/maincss.css">
 	<style type="text/css">
 		body{
@@ -14,11 +14,11 @@
 </head>
 <body>
 <h1  class="welcomheader">Welcome To The real estate management Site</h1>
-
+<!-- <img src="images/local.png" width="350" height="500"/> -->
 <div class="welcompagebuttons">
 	<p style="margin-left:45px; color:rgb(247, 118, 114);"><b>Select User Section<b></p>
   <a href="./admin"><button class="button1">Admin Section</button></a>
-  <a href="customerlogin.php"><button class="button2">Customer Section</button></a>
+  <a href="./Customer/customerlogin.php"><button class="button2">Customer Section</button></a>
 </div>
 </body>
 </html>

@@ -14,10 +14,10 @@
 
 <div class="sidebar">
   <a class="active" href="#home">Service Page</a>
-  <a href="propertymanagement.html">Property Management</a>
+  <!-- <a href="propertymanagement.php">Property Management</a> -->
   <a href="#">View Pending Visits</a>
   <a href="#contact">Report Section</a>
-  <a href="homepage.html">Back to Home</a>
+  <a href="./home.php">Back to Home</a>
 </div>
 <div class="content">
   <h1 class="header1">Real Estates Service Page</h1>
