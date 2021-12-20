@@ -1,7 +1,8 @@
 <?php
 
-   include("../includes/common.php");
    session_start();
+   include("../includes/common.php");
+
    $email = $_POST["username"];
 
    $password = $_POST["passcode"];
@@ -10,13 +11,15 @@
    $query = mysqli_query($conn,$sql);
 
    if($query){
+      $_SESSION["customer"] = $email;
+
       if(mysqli_num_rows($query) < 1){
          header('location: customerlogin.php');
       }else{
-         $_SESSION["customer"] = $email;
+        
       }
    }
-   header('location: menu.php');
+   header('location: menu.php');  
    mysqli_close($conn);
 
 ?>

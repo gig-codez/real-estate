@@ -7,7 +7,7 @@
 	<style >
 		body{
 			 	background-image: url("../images/gome.png");
-    background-size: 650px;
+    background-size: 650px
 	background-repeat: no-repeat;
 	background-position: center;
 		}
@@ -26,9 +26,7 @@
 
 
 <div class="content">
-<!-- 	<div>
-		<img src="images/home.png">
-	</div> -->
+
   <h1 class="header1">Real Estates Company Management Site.</h1>
   <p>"Are you looking for a property for buying, renting or do you have any property for sale. Dont be faked we are the best dealeres when it comes to property management." </p>
 </div>
