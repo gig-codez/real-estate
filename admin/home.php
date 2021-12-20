@@ -7,7 +7,7 @@
 	<style >
 		body{
 			 	background-image: url("../images/gome.png");
-    background-size: 650px
+    background-size: 650px;
 	background-repeat: no-repeat;
 	background-position: center;
 		}

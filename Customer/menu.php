@@ -1,14 +1,14 @@
-<?php
-	// session_start();
-	include"../includes/common.php";
- ?>
 	<html>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Real estates company</title>
 	<link rel="stylesheet" type="text/css" href="../includes/design/maincss.css"/>
 	<?php
-	// if (isset($_SESSION["customer"])){
+	session_start();
+	include("../includes/common.php");
+
+	if (isset($_SESSION['client'])) {
+		# code...
  ?>
 	<style >
 		body{
@@ -30,28 +30,33 @@
   <a href="logout.php">Logout</a>
 </div>
 <div class="content">
-  <h1 class="header1">Real Estates Company Management Site.</h1>
+  <p class="header1"><?php echo $_SESSION["client"]; ?> hh</p>
   <p>"Are you looking for a property for buying, renting or do you have any property for sale. Dont be faked we are the best dealeres when it comes to property management." </p>
- 		    <form action="" method="post">
-			 <input type="text" name="client"/>
-			<select>
+  <form action="makeVisit.php" method="POST">
+		<label>Choose Property</label><br/>
+			<select name="property">
 				<option>Choose a property</option>
-				<?php include_once ("displayProperty.php");?>
-	       </select>  
-
+				<?php include_once "displayProperty.php";?>
+	        </select>
+			  <br/>
+				<label>Time of Booking</label><br/>
 			 <input type="time" name="time" />
-			<input type="date" name="date"/>
-		<input type="submit" name="submit" value="Book"/>
-		</form>
-</div>
 
-	
+			 <br/>
+			 <label>Date of Booking</label><br/>
+
+			<input type="date" name="date"/><br/>
+
+		   <input type="submit" name="submit" value="Book"/>
+		</form>
+   </div>
+
 </body>
 </html>
 
 
 <?php 
-	// } else {
-	// 	header("location : customerlogin.php");
-	// }
+	} else {
+		header("location : customerlogin.php");
+	}
 ?>

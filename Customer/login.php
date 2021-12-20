@@ -4,22 +4,21 @@
    include("../includes/common.php");
 
    $email = $_POST["username"];
-
+   $_SESSION["client"] = $_POST["username"];
    $password = $_POST["passcode"];
 
-   $sql = "SELECT * FROM `users` WHERE email='$email' AND password='$password'";
+   $sql = "SELECT * FROM `users` WHERE email='$email' AND password='$password';";
    $query = mysqli_query($conn,$sql);
-
    if($query){
-      $_SESSION["customer"] = $email;
-
-      if(mysqli_num_rows($query) < 1){
-         header('location: customerlogin.php');
-      }else{
-        
+      if(mysqli_num_rows($query) > 1){
+         header("location: menu.php");
       }
+   }else{
+      $error = mysqli_error($conn);
+      echo "<script>alert('$error')</script>";
+
    }
-   header('location: menu.php');  
+   
    mysqli_close($conn);
 
 ?>

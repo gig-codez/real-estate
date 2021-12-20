@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <?php
-      session_start();
-  ?>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +47,8 @@
 
 <div class="sidebar">
   <a class="active" href="#home">Property Management Page</a>
-  <a href="#" class="searching">Search a Property</a>
-  <a href="#"  class="registering" onclick="document.getElementByClassName('input-search').style.display='none';">Add a Property </a>
+  <p id="triggerSearch">Search a Property</p>
+  <a href="#" class="registering">Add a Property </a>
   <a href="#contact" >Update a Property</a>
   <a href="#contact">Sale a Property</a>
   <a href="#contact">View sold Properties</a>
@@ -90,7 +87,11 @@
   </form>
 
 </div>
-
+<script type="text/javascript">
+        document.getElementById("triggerSearch").onclick = function() {
+          alert("This");
+        }
+      </script>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
@@ -116,7 +117,7 @@
       <tr>
         <td>Property Status:</td>
         <td><select name="propertystatus" style="padding:5px; width:620px;">
-          <option value="saling" style="">For Sale</option>
+          <option value="sale" style="">For Sale</option>
           <option value="renting">For renting</option>
         </select></td>
       </tr>
@@ -134,56 +135,13 @@
     </table>
   </form>
 </div>
-<?php
-  include_once "includes/connect.php";
-if (isset($_POST["submit"])) {
-  # code...
-
-  $propertyName = $_POST['propertyname'];
-  $propertyOwner =$_POST['propertyowner'];
-  $propertyLocation = $_POST['propertylocation'];
-  $propertyStatus = $_POST['propertystatus'];
-  $propertyType = $_POST['propertytype'];
-
-  $sql = "INSERT INTO `property` (`prop_name`,`prop_owner`,`location`,`Status`,`property_type`)VALUES('$propertyName','$propertyOwner','$propertyLocation','$propertyStatus','$propertyType');"; 
-  mysqli_query($conn,$sql);
-  mysqli_close($conn);
-
-  echo "
-        <script>alert('$propertyName has been registered sucessfully...');</script>
-  
-      ";
-}
-?>
+<?php include_once "RegisterProperty.php"; ?>
 <!-- ///////////////////////////////////////////////////////////////////// -->
 
-</div>
-<script type="text/javascript">
-     document.querySelector(".searching").onclick = ()=>{
-      // alert("hi")
-      document.querySelector(".input-search").classList.toggle("active");
-      document.querySelector(".formdisplay").classList.remove("active");
-      document.querySelector(".deleteingproperty").classList.remove("active");
+    </div>
 
-      
-    }
-     document.querySelector(".registering").onclick = ()=>{
-      // alert("hi")
-      document.querySelector(".input-search").classList.remove("active");
-      document.querySelector(".deleteingproperty").classList.remove("active");
-      document.querySelector(".formdisplay").classList.toggle("active");
-      
-    }
-         document.querySelector(".delete").onclick = ()=>{
-      // alert("hi")
-      document.querySelector(".formdisplay").classList.remove("active");
-      document.querySelector(".input-search").classList.remove("active");
-
-      document.querySelector(".deleteingproperty").classList.toggle("active");
-      
-    }
-
-</script>
+  
+<?php include "includes/PropertyJs.php";?>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
   
     $query = mysqli_query($conn, $sql);
     if($query){
-        $_SESSION["customer"] = $username;
+        $_SESSION["client"] = $username;
         
         header('location: menu.php');
     }else{

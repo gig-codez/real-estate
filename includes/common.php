@@ -3,6 +3,6 @@
    if(!$conn) {
         die("Error".mysqli_error($conn));
    }else{
-       print_r("Connected \n");
+     //   print_r("Connected \n");
 }
 ?>

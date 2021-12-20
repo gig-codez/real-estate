@@ -18,7 +18,6 @@ if (isset($_POST["submit"])) {
         //   echo "You are logged in \n";
           $_SESSION["user"] = $email;
           header("location: home.php");
-        
       }
    }
    mysqli_close($conn);
