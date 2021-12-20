@@ -18,27 +18,18 @@
     <p style="float: right; margin-top:-68px; font-size: 17px;"><?php echo $_SESSION['user'];?></p>
 
   </div>
-<div class="update-panel">
-  <table>
-     <tr>
-        <th>Property Name</th>
-        <th>Owner</th>
-        <th>Status</th>
-        <th>Actions</th>
-     </tr>
-     <?php 
-        $qt = mysqli_query($conn , "SELECT * FROM property");
-        while ($pd = mysqli_fetch_assoc($qt)) {
-          echo "<tr>";
-          echo "<td>".$pd["prop_name"]."</td>";
-          echo "<td>".$pd["prop_owner"]."</td>";
-          echo "<td>".$pd["Status"]."</td>";
-          echo "<tr>";
-        }
-     ?>
- </table>
-
-</div>
+    <div class="update-panel">
+          <select>
+            <option>Choose Property</option>
+            <?php 
+                $qt = mysqli_query($conn , "SELECT * FROM property");
+                while ($pd = mysqli_fetch_assoc($qt)){
+                  echo "<option value='".$pd["id"]."'>".$pd["prop_name"]."</option>";
+                }
+                mysqli_close($conn);
+            ?>
+        </select>
+    </div>
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="input-search" >
   <form action="ResultSet.php" method="POST">
@@ -57,7 +48,7 @@
     <!-- <input type="text" name="deletethis" placeholder="enter property name to delete" style="padding:16px; width: 900px; padding-top:-5px" required> -->
    <select name="del">
        <option>Choose property to delete</option>
-       <?php include "DeleteProperty.php" ?>
+       <?php include "DelProperty.php" ?>
    </select>
     <input type="submit" name="submit" value="Delete Property"/>
   </form>
@@ -67,6 +58,7 @@
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <script type="text/javascript">
+
   document.querySelector("#triggerSearch").onclick = ()=>{
   //  alert("hi");
    document.querySelector(".input-search").classList.toggle("active");
