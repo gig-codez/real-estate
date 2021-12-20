@@ -14,5 +14,6 @@ if (isset($_POST["submit"])) {
   mysqli_close($conn);
 
   echo "<script>alert('$propertyName has been registered sucessfully...');</script>";
+  header("location: propertymanagement.php");
 }
 ?>
