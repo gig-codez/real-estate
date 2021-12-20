@@ -3,67 +3,53 @@
 <body>
 
 <div class="sidebar">
-  <a class="active" href="#home">Property Management Page</a>
+  <a class="active" href="#home">Property Management</a>
   <a href="#" id="triggerSearch">Search a Property</a>
   <a href="#" class="addProperty">Add a Property </a>
-  <a href="#contact" >Update a Property</a>
+  <a href="#contact" class="update">Update a Property</a>
   <a href="#contact">Sale a Property</a>
   <a href="#contact">View sold Properties</a>
   <a href="#delete" class="delete">Delete a Property</a>
   <a href="home.php">Back to Home</a>
 </div>
 <div class="content">
-  <h1 class="header1" style="opacity: 0.5;">Property Management Page</h1>
+  <h1 class="header1" style="opacity: 0.5;">Property Management</h1>
   <div>
     <p style="float: right; margin-top:-68px; font-size: 17px;"><?php echo $_SESSION['user'];?></p>
 
   </div>
+<div class="update-panel">
+  <table>
+     <tr>
+        <th>Property Name</th>
+        <th>Owner</th>
+        <th>Status</th>
+        <th>Actions</th>
+     </tr>
+     <?php 
+        $qt = mysqli_query($conn , "SELECT * FROM property");
+        while ($pd = mysqli_fetch_assoc($qt)) {
+          echo "<tr>";
+          echo "<td>".$pd["prop_name"]."</td>";
+          echo "<td>".$pd["prop_owner"]."</td>";
+          echo "<td>".$pd["Status"]."</td>";
+          echo "<tr>";
+        }
+     ?>
+ </table>
 
-
+</div>
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="input-search" >
-  <form action="" method="GET">
+  <form action="ResultSet.php" method="POST">
     <input type="text" name="query" placeholder="search Property details" style="padding:10px; width: 500px; margin-top:-6px;" required>
-    <input  type="submit" value="Search" name="query"/>
+    <input  type="submit" value="Search" name="submit"/>
   </form>
 
-<button style="margin-top:5px;"><a href="servicespage.php" style="text-decoration: none;">Back to Home</a></button>
-</div>
-
-<?php
-    if (isset($_GET["submit"])) {
-        ?>
-    <table>
-    <!-- `prop_name`,`prop_owner`,`location`,`Status`,`property_type` -->
-    <tr>
-        <th>Property Name</th>
-        <th>Porperty Owner</th>
-        <th>Location</th>
-        <th>Status</th>
-   </tr>
-
-<?php
-            # ------ Query from the search field
-            $searchQ = $_GET["search"];
-            $sqlQuery = "SELECT * FROM property WHERE prop_name='$searchQ'";
-           $searched =  mysqli_query($conn , $sqlQuery);
-
-           while ($r = mysqli_fetch_assoc($searched)) {
-               # 
-               echo "<tr>";
-               echo "<td>".$r["prop_name"]."</td>";
-               echo "<td>".$r["prop_owner"]."</td>";
-               echo "<td>".$r["location"]."</td>";
-               echo "<td>".$r["Status"]."</td>";
-               echo "</tr>";
-           }
-    }
-    mysqli_close($conn);
-?>
-</table>
+<!-- <button style="margin-top:5px;"><a href="servicespage.php" style="text-decoration: none;">Back to Home</a></button> -->
+</div> 
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
-
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="deleteingproperty" >
@@ -71,7 +57,7 @@
     <!-- <input type="text" name="deletethis" placeholder="enter property name to delete" style="padding:16px; width: 900px; padding-top:-5px" required> -->
    <select name="del">
        <option>Choose property to delete</option>
-       <?php include("DeleteProperty.php");?>
+       <?php include "DeleteProperty.php" ?>
    </select>
     <input type="submit" name="submit" value="Delete Property"/>
   </form>
@@ -86,12 +72,14 @@
    document.querySelector(".input-search").classList.toggle("active");
    document.querySelector(".formdisplay").classList.remove("active");
    document.querySelector(".deleteingproperty").classList.remove("active");
+   document.querySelector(".update-panel").classList.remove("active");
  }
   document.querySelector(".addProperty").onclick = ()=>{
    // alert("hi")
    document.querySelector(".input-search").classList.remove("active");
    document.querySelector(".deleteingproperty").classList.remove("active");
    document.querySelector(".formdisplay").classList.toggle("active");
+   document.querySelector(".update-panel").classList.remove("active");
    
  }
  
@@ -101,6 +89,19 @@
    document.querySelector(".input-search").classList.remove("active");
 
    document.querySelector(".deleteingproperty").classList.toggle("active");
+
+   document.querySelector(".update-panel").classList.remove("active");
+   
+ }
+
+
+  document.querySelector(".update").onclick = ()=>{
+   // alert("hi")
+   document.querySelector(".formdisplay").classList.remove("active");
+   document.querySelector(".input-search").classList.remove("active");
+
+   document.querySelector(".deleteingproperty").classList.remove("active");
+   document.querySelector(".update-panel").classList.toggle("active");
    
  }
 </script>

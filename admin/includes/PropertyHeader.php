@@ -40,6 +40,16 @@
     opacity: 1;
 
   }
+  .update-panel{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+  }
 
+  .update-panel.active{
+    visibility: visible;
+    opacity: 1;
+
+  }
   </style>
 </head>
