@@ -1,58 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Real estates company</title>
-	<link rel="stylesheet" type="text/css" href="../includes/design/maincss.css">
-  <style>
-  body{background-image:url(images/logo.png);
-  background-size: 500px;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  }
-  .input-search{
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-  }
-  .input-search.active{
-    visibility: visible;
-    opacity: 1;
-  }
-  .formdisplay{
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-  }
-  .formdisplay.active{
-    visibility: visible;
-    opacity: 1;
-  }
-  .deleteingproperty{
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-  }
-  .deleteingproperty.active{
-    visibility: visible;
-    opacity: 1;
-
-  }
-
-  </style>
-</head>
+<?php include("includes/PropertyHeader.php");?>
+<?php include_once "includes/connect.php";?>
 <body>
 
 <div class="sidebar">
   <a class="active" href="#home">Property Management Page</a>
-  <p id="triggerSearch">Search a Property</p>
-  <a href="#" class="registering">Add a Property </a>
+  <a href="#" id="triggerSearch">Search a Property</a>
+  <a href="#" class="addProperty">Add a Property </a>
   <a href="#contact" >Update a Property</a>
   <a href="#contact">Sale a Property</a>
   <a href="#contact">View sold Properties</a>
-  <a href="#delete">Delete a Property</a>
+  <a href="#delete" class="delete">Delete a Property</a>
   <a href="home.php">Back to Home</a>
 </div>
 <div class="content">
@@ -65,40 +22,93 @@
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="input-search" >
-  <form>
-    <input type="text" name="searchdata" placeholder="search Property details" style="padding:16px; width: 900px; margin-top:-6px;" required>
-    <button type="submit">Search</button>
+  <form action="" method="GET">
+    <input type="text" name="query" placeholder="search Property details" style="padding:10px; width: 500px; margin-top:-6px;" required>
+    <input  type="submit" value="Search" name="query"/>
   </form>
+
 <button style="margin-top:5px;"><a href="servicespage.php" style="text-decoration: none;">Back to Home</a></button>
 </div>
+
+<?php
+    if (isset($_GET["submit"])) {
+        ?>
+    <table>
+    <!-- `prop_name`,`prop_owner`,`location`,`Status`,`property_type` -->
+    <tr>
+        <th>Property Name</th>
+        <th>Porperty Owner</th>
+        <th>Location</th>
+        <th>Status</th>
+   </tr>
+
+<?php
+            # ------ Query from the search field
+            $searchQ = $_GET["search"];
+            $sqlQuery = "SELECT * FROM property WHERE prop_name='$searchQ'";
+           $searched =  mysqli_query($conn , $sqlQuery);
+
+           while ($r = mysqli_fetch_assoc($searched)) {
+               # 
+               echo "<tr>";
+               echo "<td>".$r["prop_name"]."</td>";
+               echo "<td>".$r["prop_owner"]."</td>";
+               echo "<td>".$r["location"]."</td>";
+               echo "<td>".$r["Status"]."</td>";
+               echo "</tr>";
+           }
+    }
+    mysqli_close($conn);
+?>
+</table>
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="deleteingproperty" >
-  <form action="deleteproperty.php" method="POST">
+  <form action="" method="POST">
     <!-- <input type="text" name="deletethis" placeholder="enter property name to delete" style="padding:16px; width: 900px; padding-top:-5px" required> -->
-   <select name="deleteProperty">
+   <select name="del">
        <option>Choose property to delete</option>
-       <?php include_once "property.php"; ?>
+       <?php include("DeleteProperty.php");?>
    </select>
-    <button type="submit">Delete Property</button>
+    <input type="submit" name="submit" value="Delete Property"/>
   </form>
-
+  <?php include_once "deleteproperty.php";?>
 </div>
-<script type="text/javascript">
-        document.getElementById("triggerSearch").onclick = function() {
-          alert("This");
-        }
-      </script>
+
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
+<script type="text/javascript">
+  document.querySelector("#triggerSearch").onclick = ()=>{
+  //  alert("hi");
+   document.querySelector(".input-search").classList.toggle("active");
+   document.querySelector(".formdisplay").classList.remove("active");
+   document.querySelector(".deleteingproperty").classList.remove("active");
+ }
+  document.querySelector(".addProperty").onclick = ()=>{
+   // alert("hi")
+   document.querySelector(".input-search").classList.remove("active");
+   document.querySelector(".deleteingproperty").classList.remove("active");
+   document.querySelector(".formdisplay").classList.toggle("active");
+   
+ }
+ 
+ document.querySelector(".delete").onclick = ()=>{
+   // alert("hi")
+   document.querySelector(".formdisplay").classList.remove("active");
+   document.querySelector(".input-search").classList.remove("active");
+
+   document.querySelector(".deleteingproperty").classList.toggle("active");
+   
+ }
+</script>
 
 
 <!-- //////////////////////////////////////////////////////////////////////////////////// -->
 <div class="formdisplay" style="margin-top:-140px;"> 
-  <form action="" method="POST">
+  <form action="RegisterProperty.php" method="POST">
     <p style="font-size: 18px; margin-top: 5px; text-align: center; margin-left: -24px; color: red;">Register the property by completing the form below</p>
     <div>
     <table>
@@ -121,6 +131,7 @@
           <option value="renting">For renting</option>
         </select></td>
       </tr>
+
       <tr>
         <td>Property Type:</td>
         <td><select name="propertytype" style="padding:5px; width:620px;">
@@ -128,6 +139,7 @@
           <option value="house">House</option>
         </select></td>
       </tr>
+
       <tr>
         <td><button type="submit" name="submit" style="margin-top: 10px;">Register Property</button></td>
         <td><a href="servicespage.php" style="text-decoration:none; padding:19px; background-color:blue; color:white;">Back To Menu </a></td>
@@ -135,14 +147,11 @@
     </table>
   </form>
 </div>
-<?php include_once "RegisterProperty.php"; ?>
 <!-- ///////////////////////////////////////////////////////////////////// -->
 
     </div>
 
   
-<?php include "includes/PropertyJs.php";?>
 </body>
 
 </html>
-<!-- onclick="document.getElementById('registering').style.visibility='visible';" -->
