@@ -3,5 +3,6 @@
 
    session_destroy();
 
-   header("location : customerlogin.php");
+   // header("location : ");
+   echo "<a href='customerlogin.php'>continue</a>";
 ?>

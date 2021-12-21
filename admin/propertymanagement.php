@@ -1,6 +1,7 @@
 <?php include("includes/PropertyHeader.php");?>
 <?php include_once "includes/connect.php";?>
-<body>
+
+<body style=" background-image: url('../images/serve.png');"> 
 
 <div class="sidebar">
   <a class="active" href="#home">Property Management</a>
@@ -8,7 +9,6 @@
   <a href="#" class="addProperty">Add a Property </a>
   <a href="#contact" class="update">Update a Property</a>
   <a href="#contact">Sale a Property</a>
-  <a href="#contact">View sold Properties</a>
   <a href="#delete" class="delete">Delete a Property</a>
   <a href="home.php">Back to Home</a>
 </div>
@@ -19,22 +19,50 @@
 
   </div>
     <div class="update-panel">
-          <select>
+
+      <form action="Update.php" method="POST">
+        <table>
+          <tr>
+            <td>Choose Property</td>
+            <td>          <select name="up_id" style='padding:10px; width:627px;'>
             <option>Choose Property</option>
             <?php 
+              
                 $qt = mysqli_query($conn , "SELECT * FROM property");
-                while ($pd = mysqli_fetch_assoc($qt)){
-                  echo "<option value='".$pd["id"]."'>".$pd["prop_name"]."</option>";
+                if(mysqli_num_rows($qt) > 1){
+                  while ($pd = mysqli_fetch_assoc($qt)){
+                    echo "<option value='".$pd["id"]."'>".$pd["prop_name"]."</option>";
+                  }
+                  // mysqli_close($conn);
                 }
-                mysqli_close($conn);
             ?>
-        </select>
+        </select></td>
+          </tr>
+          <tr><td>
+            Owner
+          </td>
+        <td><input type="text" name="owner" style='padding:10px; width:600px;'/></td>
+        </tr>
+        <tr><td>Location</td>
+      <td><input type="text" name="locat"style='padding:10px; width:600px;'/></td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td> <input type="text" name="stat" style='padding:10px; width:600px;'/></td>
+      </tr>
+      <tr>
+        <td> <input type="submit" name="submit" value="Update Property" style='padding:10px; width:120px;'/></td>
+      </tr>
+</table>
+
+       
+      </form>
     </div>
   <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <div class="input-search" >
   <form action="ResultSet.php" method="POST">
-    <input type="text" name="query" placeholder="search Property details" style="padding:10px; width: 500px; margin-top:-6px;" required>
-    <input  type="submit" value="Search" name="submit"/>
+    <input type="text" name="query" placeholder="search Property details" style="padding:20px; width: 500px; margin-top:-6px;" required>
+    <input  type="submit" value="Search" name="submit" style="padding:20px; width:120px;"/>
   </form>
 
 <!-- <button style="margin-top:5px;"><a href="servicespage.php" style="text-decoration: none;">Back to Home</a></button> -->
@@ -46,11 +74,11 @@
 <div class="deleteingproperty" >
   <form action="" method="POST">
     <!-- <input type="text" name="deletethis" placeholder="enter property name to delete" style="padding:16px; width: 900px; padding-top:-5px" required> -->
-   <select name="del">
+   <select name="del" style='padding:20px; width:700px;'>
        <option>Choose property to delete</option>
        <?php include "DelProperty.php" ?>
    </select>
-    <input type="submit" name="submit" value="Delete Property"/>
+    <input type="submit" name="submit" value="Delete Property" style="padding:20px;"/>
   </form>
   <?php include_once "deleteproperty.php";?>
 </div>
@@ -102,7 +130,7 @@
 <!-- //////////////////////////////////////////////////////////////////////////////////// -->
 <div class="formdisplay" style="margin-top:-140px;"> 
   <form action="RegisterProperty.php" method="POST">
-    <p style="font-size: 18px; margin-top: 5px; text-align: center; margin-left: -24px; color: red;">Register the property by completing the form below</p>
+    <p style="font-size: 18px; margin-top: 5px; text-align: center; margin-left: -24px; color: black;">Register the property by completing the form below</p>
     <div>
     <table>
       <tr>

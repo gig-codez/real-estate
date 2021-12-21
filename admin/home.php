@@ -19,8 +19,7 @@
 
   <a class="active" href="#home">Admin Menu</a>
   <a href="servicespage.php">Services</a>
-  <a href="#contact">About Us</a>
-  <a href="#about">Contact</a>
+
   <a href="logout.php">Logout</a>
 </div>
 

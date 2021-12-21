@@ -5,12 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome</title>
 	<link rel="stylesheet" type="text/css" href="./includes/design/maincss.css">
-	<style type="text/css">
-		body{
-	    	background-color: rgb(235, 250, 246);
-		}
+		<style>
+    body{
+        background-image: url("images/logo.png");
+    background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position:500px;
 
-	</style>
+    }
+  </style>
 </head>
 <body>
 <h1  class="welcomheader">Welcome To The real estate management Site</h1>

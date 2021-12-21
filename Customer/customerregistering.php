@@ -8,7 +8,6 @@
 	<title>Customer Login</title>
 </head>
 <body>
-<?php ?>
     <form action="sign-up.php" method="POST" class="form">
       <div class="title">Real Estate Site</div>
       <div class="subtitle">Customer registration</div>
@@ -34,7 +33,7 @@
 
 
     <div  style="margin-top: 570px; margin-left: -210px; padding:15px;">
-    	<a href="index.php"><button class="button1">Back To Home</button></a>
+    	<a href="../index.php"><button class="button1">Back To Home</button></a>
     </div>
     <div  style="margin-top: 570px; margin-left: -40px; margin-right: 20px; padding:20px; ">
       <a href="customerlogin.php"><button class="button1">Login</button></a>

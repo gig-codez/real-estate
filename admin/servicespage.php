@@ -18,8 +18,8 @@
 
 <div class="sidebar">
   <a class="active" href="#home">Service Page</a>
+  <a href="#">List Of Pending Visits</a>
   <a href="propertymanagement.php">Property Management</a>
-  <a href="#">View Pending Visits</a>
   <a href="#contact">Report Section</a>
   <a href="./home.php">Back to Home</a>
 </div>
@@ -28,12 +28,12 @@
     <div>
     <p style="float: right; margin-top:-68px; font-size: 18px;"><?php echo $_SESSION['user']?></p>
    <b>Pending Visits</p>
-    <table>
+    <table border="1">
       <tr>
-            <th>Client</th> 
-            <th>Property</th> 
-            <th>Date</th> 
-            <th>Time</th> 
+            <th style="padding:7px; width:500px;">Client</th> 
+            <th style="padding:7px; width:500px;">Property</th> 
+            <th style="padding:7px; width:500px;">Date</th> 
+            <th style="padding:7px; width:500px;">Time</th> 
             <!-- <th>Location</th>  -->
       </tr>
     <?php

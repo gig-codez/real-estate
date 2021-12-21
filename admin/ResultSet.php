@@ -2,13 +2,13 @@
 <?php
     include "includes/connect.php";
     if (isset($_POST["submit"])) {
-    echo "<table>
+    echo "<table border='1'>
     
     <tr>
-        <th>Property Name</th>
-        <th>Porperty Owner</th>
-        <th>Location</th>
-        <th>Status</th>
+        <th style='padding:7px; width:500px;'>Property Name</th>
+        <th style='padding:7px; width:500px;'>Porperty Owner</th>
+        <th style='padding:7px; width:500px;'>Location</th>
+        <th style='padding:7px; width:500px;'>Status</th>
 </tr>";
     # ------ Query from the search field
             $q = $_POST["query"];
@@ -30,7 +30,7 @@
 
     }
 
-    echo "<button><a href='./propertymanagement.php'>Back To Home</a></button>";
+    echo "<button style='padding:10px; width:120px;'><a href='./propertymanagement.php' style='text-decoration:none;'>Back To Home</a></button>";
 ?>
 
 

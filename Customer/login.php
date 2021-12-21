@@ -10,14 +10,16 @@
    $sql = "SELECT * FROM `users` WHERE email='$email' AND password='$password';";
    $query = mysqli_query($conn,$sql);
    if($query){
-      if(mysqli_num_rows($query) > 1){
-         header("location: menu.php");
-      }
+      // if(mysqli_num_rows($query) > 1){
+        
+      // }
    }else{
-      $error = mysqli_error($conn);
-      echo "<script>alert('$error')</script>";
+      // $error = mysqli_connect_error($conn);
+      // echo "<script>alert('$error')</script>";
 
    }
+   header("location: menu.php");
+
    
    mysqli_close($conn);
 
